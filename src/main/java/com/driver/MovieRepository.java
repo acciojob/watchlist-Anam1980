@@ -22,12 +22,17 @@ public class MovieRepository {
     }
 
     public void addMovieDirectorPair(String movieName, String directorName) {
-        List<String> moviesList = directorMovieMap.get(directorName);
-        if (moviesList == null) {
-            moviesList = new ArrayList<>();
-            directorMovieMap.put(directorName, moviesList);
+        if(directors.containsKey(directorName) && movies.containsKey(movieName)){
+            directors.put(directorName,directors.get(directorName));
+            movies.put(movieName, movies.get(movieName));
+
+            List<String>currentMovies = new ArrayList<>();
+            if(directorMovieMap.containsKey(directorName)){
+                currentMovies = directorMovieMap.get(directorName);
+            }
+            currentMovies.add(movieName);
+            directorMovieMap.put(directorName, currentMovies);
         }
-        moviesList.add(movieName);
     }
 
     public Movie findMovieByName(String name) {
