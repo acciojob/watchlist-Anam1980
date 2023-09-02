@@ -2,10 +2,7 @@ package com.driver;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class MovieRepository {
@@ -52,16 +49,40 @@ public class MovieRepository {
     }
 
     public void deleteDirector(String directorName) {
-        if(directors.containsKey(directorName)) {
-            directors.remove(directorName);
+        List<String>movieslist = new ArrayList<>();
+        if(directorMovieMap.containsKey(directorName)) {
+            movieslist = directorMovieMap.get(directorName);
+
+            for (String movie : movieslist) {
+                if (movies.containsKey(movie)) {
+                    movies.remove(movie);
+                }
+            }
+
             directorMovieMap.remove(directorName);
         }
 
+        if(directors.containsKey(directorName)){
+            directors.remove(directorName);
+        }
     }
 
     public void deleteAllDirectors() {
 
-        directors.clear();
-        directorMovieMap.clear();
+        HashSet<String> movieSet = new HashSet<>();
+
+        for(String director : directorMovieMap.keySet()){
+            List<String> movielist = directorMovieMap.get(director);
+            for (String movie : movielist){
+                movielist.add(movie);
+            }
+        }
+
+        for (String movie : movieSet){
+            if(movies.containsKey(movie)){
+                movies.remove(movie);
+            }
+        }
+
     }
 }
