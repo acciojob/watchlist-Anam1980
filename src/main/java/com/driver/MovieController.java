@@ -41,36 +41,36 @@ public class MovieController {
     public ResponseEntity getMovieByName(@PathVariable("name") String name) {
         Movie movie = movieService.getMovieByName(name);
 
-        if(movie==null){
-            return  new ResponseEntity("Movie doesn't exist", HttpStatus.NOT_FOUND);
-        }
+//        if(movie==null){
+//            return  new ResponseEntity("Movie doesn't exist", HttpStatus.NOT_FOUND);
+//        }
         return new ResponseEntity(movie, HttpStatus.FOUND);
     }
 
     @GetMapping("/get-director-by-name/{name}")
     public ResponseEntity getDirectorByName(@PathVariable("name") String name) {
         Director director = movieService.getDirectorByName(name);
-        if(director==null){
-            return new ResponseEntity("Director doesn't exist", HttpStatus.NOT_FOUND);
-        }
+//        if(director==null){
+//            return new ResponseEntity("Director doesn't exist", HttpStatus.NOT_FOUND);
+//        }
         return new ResponseEntity(director, HttpStatus.FOUND);
     }
 
     @GetMapping("/get-movies-by-director-name/{director}")
     public ResponseEntity getMoviesByDirectorName(@PathVariable("director") String director) {
         List<String> movies = movieService.getMoviesByDirectorName(director);
-        if(movies==null){
-            return new ResponseEntity("MoviesList doesn't exist", HttpStatus.NOT_FOUND);
-        }
+//        if(movies==null){
+//            return new ResponseEntity("MoviesList doesn't exist", HttpStatus.NOT_FOUND);
+//        }
         return new ResponseEntity(movies, HttpStatus.FOUND);
     }
 
     @GetMapping("/get-all-movies")
     public ResponseEntity findAllMovies() {
         List<String> movies = movieService.findAllMovies();
-        if(movies==null){
-            return new ResponseEntity("AllMoviesList doesn't exist", HttpStatus.NOT_FOUND);
-        }
+//        if(movies==null){
+//            return new ResponseEntity("AllMoviesList doesn't exist", HttpStatus.NOT_FOUND);
+//        }
         return new ResponseEntity(movies, HttpStatus.FOUND);
     }
 

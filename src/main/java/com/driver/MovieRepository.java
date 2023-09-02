@@ -74,7 +74,7 @@ public class MovieRepository {
         for(String director : directorMovieMap.keySet()){
             List<String> movielist = directorMovieMap.get(director);
             for (String movie : movielist){
-                movielist.add(movie);
+                movieSet.add(movie);
             }
         }
 
