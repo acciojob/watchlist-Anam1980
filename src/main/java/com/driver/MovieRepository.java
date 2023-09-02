@@ -47,11 +47,15 @@ public class MovieRepository {
     }
 
     public void deleteDirector(String directorName) {
-        directors.remove(directorName);
-        directorMovieMap.remove(directorName);
+        if(directors.containsKey(directorName)) {
+            directors.remove(directorName);
+            directorMovieMap.remove(directorName);
+        }
+
     }
 
     public void deleteAllDirectors() {
+
         directors.clear();
         directorMovieMap.clear();
     }
